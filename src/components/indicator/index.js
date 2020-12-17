@@ -49,7 +49,7 @@ export default class Indicator extends PureComponent {
 
     this.state = {
       progress: new Animated.Value(0),
-      hideAnimation: new Animated.Value(animating? 1 : 0),
+      hideAnimation: new Animated.Value(animating ? 1 : 0),
     };
   }
 
@@ -76,9 +76,11 @@ export default class Indicator extends PureComponent {
       let { hideAnimation } = this.state;
       let { hideAnimationDuration: duration } = this.props;
 
-      Animated
-        .timing(hideAnimation, { toValue: animating? 1 : 0, duration })
-        .start();
+      Animated.timing(hideAnimation, {
+        duration,
+        toValue: animating ? 1 : 0,
+        useNativeDriver: true,
+      }).start();
     }
   }
 
